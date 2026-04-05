@@ -1,0 +1,111 @@
+ /*
+ * MAIN Generated Driver File
+ * 
+ * @file main.c
+ * 
+ * @defgroup main MAIN
+ * 
+ * @brief This is the generated driver implementation file for the MAIN driver.
+ *
+ * @version MAIN Driver Version 1.0.2
+ *
+ * @version Package Version: 3.1.2
+*/
+
+/*
+? [2026] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
+*/
+#include "stdio.h"
+#include "mcc_generated_files/system/system.h"
+
+#include "src/lcd.h"
+#include "src/TinyRTC.h"
+
+/*
+	Main application
+*/
+
+int main(void){
+	SYSTEM_Initialize();
+	// If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
+	// If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
+	// Use the following macros to: 
+
+	// Enable the Global Interrupts 
+	INTERRUPT_GlobalInterruptEnable(); 
+
+	// Disable the Global Interrupts 
+	//INTERRUPT_GlobalInterruptDisable(); 
+
+	// Enable the Peripheral Interrupts 
+	INTERRUPT_PeripheralInterruptEnable(); 
+
+	// Disable the Peripheral Interrupts 
+	//INTERRUPT_PeripheralInterruptDisable(); 
+	char msgl1[16] = "                ";
+	char msgl2[16] = "                ";
+
+	tmElements_t tm;
+	I2C1_Initialize();
+    lcd_init();
+	lcd_cmd(0x80);
+	lcd_print("Hello, World!");
+	lcd_cmd(0xC0);
+	lcd_print("  I2C RTC Test");
+
+ 	__delay_us(1);
+	while(1){
+		LATDbits.LATD2=1;
+		__delay_ms(200);
+		LATDbits.LATD2=0;
+		__delay_ms(200);
+
+		uint8_t sec;
+
+		rtc_read_reg(0x00, &sec, 1);
+
+		printf("%02X\n", sec);
+
+		if(rtc_read(&tm)){
+			// 正常読み取り
+			sprintf(msgl1, "%04u/%02u/%02u ", tm.Year + 2000, tm.Month, tm.Day);
+			sprintf(msgl2, "  %02u:%02u:%02u ", tm.Hour, tm.Minute, tm.Second);
+			lcd_cmd(0x80);
+			lcd_print(msgl1);
+			lcd_cmd(0xC0);
+			lcd_print(msgl2);
+		}
+
+		// for(uint8_t addr=0; addr<128; addr++)
+		// {
+		// 	if(i2c_scan(addr)){
+		// 		printf("found: 0x%02X\n", addr);
+		// 	}
+		// }
+		// static uint8_t count = 0;
+		// sprintf(msgl2, "%1u SCL=%d SDA=%d", count++,
+		// 		PORTCbits.RC3,
+		// 		PORTCbits.RC4);
+		// lcd_cmd(0xC0);
+		// lcd_print(msgl2);
+		__delay_ms(1000);
+	}
+	I2C1_Deinitialize();
+}
