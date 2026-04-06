@@ -21,7 +21,7 @@
 
 /* 
  * File:   
- * Author: 
+ * Author: xtatrax & ChatGPT
  * Comments:
  * Revision history: 
  */
