@@ -1,6 +1,6 @@
 /*
  * File:   lcd.c
- * Author: xtatrax
+ * Author: xtatrax & ChatGPT
  *
  * Created on March 27, 2026, 3:45 PM
  */
