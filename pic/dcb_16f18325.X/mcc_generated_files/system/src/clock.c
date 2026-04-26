@@ -1,14 +1,15 @@
 /**
- * Generated Driver File
+ * CLOCK Generated Driver Source File
  * 
- * @file pins.c
+ * @file clock.c
  * 
- * @ingroup  pinsdriver
+ * @ingroup clockdriver 
  * 
- * @brief This is generated driver implementation for pins. 
- *        This file provides implementations for pin APIs for all pins selected in the GUI.
+ * @brief This file contains the API prototypes for the Clock driver.
  *
- * @version Driver Version 3.1.1
+ * @version Driver Version 2.0.4
+ *
+ * @version Package Version 4.3.7
 */
 
 /*
@@ -32,69 +33,25 @@
     THIS SOFTWARE.
 */
 
-#include "../pins.h"
+#include <xc.h>
+#include "../clock.h"
 
-
-void PIN_MANAGER_Initialize(void)
+void CLOCK_Initialize(void)
 {
-   /**
-    LATx registers
-    */
-    LATA = 0x0;
-    LATB = 0x0;
-    LATC = 0x18;
-    LATD = 0x0;
-    LATE = 0x0;
-    /**
-    ODx registers
-    */
+    // Set the CLOCK CONTROL module to the options selected in the user interface.
+    OSCCON1 = (0 << _OSCCON1_NDIV_POSN)   // NDIV 1
+        | (6 << _OSCCON1_NOSC_POSN);  // NOSC HFINTOSC
+    OSCCON3 = (0 << _OSCCON3_SOSCPWR_POSN)   // SOSCPWR Low power
+        | (0 << _OSCCON3_CSWHOLD_POSN);  // CSWHOLD may proceed
+    OSCEN = (0 << _OSCEN_EXTOEN_POSN)   // EXTOEN disabled
+        | (0 << _OSCEN_HFOEN_POSN)   // HFOEN disabled
+        | (0 << _OSCEN_LFOEN_POSN)   // LFOEN disabled
+        | (0 << _OSCEN_SOSCEN_POSN)   // SOSCEN disabled
+        | (0 << _OSCEN_ADOEN_POSN);  // ADOEN disabled
+    OSCFRQ = (7 << _OSCFRQ_HFFRQ_POSN);  // HFFRQ 32_MHz
+    OSCSTAT1 = 
+    OSCTUNE = (0 << _OSCTUNE_HFTUN_POSN);  // HFTUN 0x0
 
-    /**
-    TRISx registers
-    */
-    TRISA = 0xEF;
-    TRISB = 0xC0;
-    TRISC = 0xFF;
-    TRISD = 0xFB;
-    TRISE = 0x7;
-
-    /**
-    ANSELx registers
-    */
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x0;
-
-
-    /**
-    SLRCONx registers
-    */
-
-    /**
-    INLVLx registers
-    */
-
-   /**
-    RxyI2C | RxyFEAT registers   
-    */
-    /**
-    PPS registers
-    */
-
-   /**
-    IOCx registers 
-    */
-    IOCB = 0x0;
-
-
-    // Enable INTCONbits.RBIE interrupt 
-    INTCONbits.RBIE = 1; 
-}
-  
-void PIN_MANAGER_IOC(void)
-{
 }
 /**
  End of File

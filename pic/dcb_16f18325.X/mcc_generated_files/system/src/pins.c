@@ -8,7 +8,7 @@
  * @brief This is generated driver implementation for pins. 
  *        This file provides implementations for pin APIs for all pins selected in the GUI.
  *
- * @version Driver Version 3.1.1
+ * @version Driver Version 3.0.0
 */
 
 /*
@@ -41,56 +41,66 @@ void PIN_MANAGER_Initialize(void)
     LATx registers
     */
     LATA = 0x0;
-    LATB = 0x0;
-    LATC = 0x18;
-    LATD = 0x0;
-    LATE = 0x0;
-    /**
-    ODx registers
-    */
+    LATC = 0x30;
 
     /**
     TRISx registers
     */
-    TRISA = 0xEF;
-    TRISB = 0xC0;
-    TRISC = 0xFF;
-    TRISD = 0xFB;
-    TRISE = 0x7;
+    TRISA = 0x3F;
+    TRISC = 0x3F;
 
     /**
     ANSELx registers
     */
+    ANSELA = 0x37;
+    ANSELC = 0xF;
 
     /**
     WPUx registers
     */
-    WPUB = 0x0;
-
-
+    WPUA = 0x0;
+    WPUC = 0x0;
+  
+    /**
+    ODx registers
+    */
+   
+    ODCONA = 0x0;
+    ODCONC = 0x0;
     /**
     SLRCONx registers
     */
-
+    SLRCONA = 0x37;
+    SLRCONC = 0x3F;
     /**
     INLVLx registers
     */
+    INLVLA = 0x3F;
+    INLVLC = 0x3F;
 
-   /**
-    RxyI2C | RxyFEAT registers   
-    */
     /**
     PPS registers
+    */
+    SSP2CLKPPS = 0x14;  //RC4->MSSP2:SCL2;
+    RC4PPS = 26;  //RC4->MSSP2:SCL2;
+    SSP2DATPPS = 0x15;  //RC5->MSSP2:SDA2;
+    RC5PPS = 27;  //RC5->MSSP2:SDA2;
+
+    /**
+    APFCON registers
     */
 
    /**
     IOCx registers 
     */
-    IOCB = 0x0;
+    IOCAP = 0x0;
+    IOCAN = 0x0;
+    IOCAF = 0x0;
+    IOCCP = 0x0;
+    IOCCN = 0x0;
+    IOCCF = 0x0;
 
 
-    // Enable INTCONbits.RBIE interrupt 
-    INTCONbits.RBIE = 1; 
 }
   
 void PIN_MANAGER_IOC(void)

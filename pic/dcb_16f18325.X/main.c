@@ -1,14 +1,15 @@
-/**
- * Generated Driver File
+ /*
+ * MAIN Generated Driver File
  * 
- * @file pins.c
+ * @file main.c
  * 
- * @ingroup  pinsdriver
+ * @defgroup main MAIN
  * 
- * @brief This is generated driver implementation for pins. 
- *        This file provides implementations for pin APIs for all pins selected in the GUI.
+ * @brief This is the generated driver implementation file for the MAIN driver.
  *
- * @version Driver Version 3.1.1
+ * @version MAIN Driver Version 1.0.2
+ *
+ * @version Package Version: 3.1.2
 */
 
 /*
@@ -31,71 +32,33 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
+#include "mcc_generated_files/system/system.h"
 
-#include "../pins.h"
-
-
-void PIN_MANAGER_Initialize(void)
-{
-   /**
-    LATx registers
-    */
-    LATA = 0x0;
-    LATB = 0x0;
-    LATC = 0x18;
-    LATD = 0x0;
-    LATE = 0x0;
-    /**
-    ODx registers
-    */
-
-    /**
-    TRISx registers
-    */
-    TRISA = 0xEF;
-    TRISB = 0xC0;
-    TRISC = 0xFF;
-    TRISD = 0xFB;
-    TRISE = 0x7;
-
-    /**
-    ANSELx registers
-    */
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x0;
-
-
-    /**
-    SLRCONx registers
-    */
-
-    /**
-    INLVLx registers
-    */
-
-   /**
-    RxyI2C | RxyFEAT registers   
-    */
-    /**
-    PPS registers
-    */
-
-   /**
-    IOCx registers 
-    */
-    IOCB = 0x0;
-
-
-    // Enable INTCONbits.RBIE interrupt 
-    INTCONbits.RBIE = 1; 
-}
-  
-void PIN_MANAGER_IOC(void)
-{
-}
-/**
- End of File
+/*
+    Main application
 */
+
+int main(void)
+{
+    SYSTEM_Initialize();
+    // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
+    // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
+    // Use the following macros to: 
+
+    // Enable the Global Interrupts 
+    //INTERRUPT_GlobalInterruptEnable(); 
+
+    // Disable the Global Interrupts 
+    //INTERRUPT_GlobalInterruptDisable(); 
+
+    // Enable the Peripheral Interrupts 
+    //INTERRUPT_PeripheralInterruptEnable(); 
+
+    // Disable the Peripheral Interrupts 
+    //INTERRUPT_PeripheralInterruptDisable(); 
+
+
+    while(1)
+    {
+    }    
+}

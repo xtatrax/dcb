@@ -158,3 +158,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+*.zip
+.history
+~*

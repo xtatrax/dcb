@@ -1,14 +1,15 @@
 /**
- * Generated Driver File
+ * System Driver Header File
  * 
- * @file pins.c
+ * @file system.h
  * 
- * @ingroup  pinsdriver
+ * @defgroup systemdriver System Driver
  * 
- * @brief This is generated driver implementation for pins. 
- *        This file provides implementations for pin APIs for all pins selected in the GUI.
+ * @brief This file contains the API prototype for the System driver.
  *
- * @version Driver Version 3.1.1
+ * @version Driver Version 1.0.1
+ *
+ * @version Package Version 1.0.1
 */
 
 /*
@@ -32,70 +33,28 @@
     THIS SOFTWARE.
 */
 
-#include "../pins.h"
+#ifndef SYSTEM_H
+#define	SYSTEM_H
 
+#include <xc.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "config_bits.h"
+#include "../system/pins.h"
+#include "../system/interrupt.h"
+#include "../system/clock.h"
+#include "../i2c_client/mssp2.h"
 
-void PIN_MANAGER_Initialize(void)
-{
-   /**
-    LATx registers
-    */
-    LATA = 0x0;
-    LATB = 0x0;
-    LATC = 0x18;
-    LATD = 0x0;
-    LATE = 0x0;
-    /**
-    ODx registers
-    */
+/**
+ * @ingroup systemdriver
+ * @brief Initializes the system module.
+ * This routine is called only once during system initialization, before calling other APIs.
+ * @param None.
+ * @return None.
+*/
+void SYSTEM_Initialize(void);
 
-    /**
-    TRISx registers
-    */
-    TRISA = 0xEF;
-    TRISB = 0xC0;
-    TRISC = 0xFF;
-    TRISD = 0xFB;
-    TRISE = 0x7;
-
-    /**
-    ANSELx registers
-    */
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x0;
-
-
-    /**
-    SLRCONx registers
-    */
-
-    /**
-    INLVLx registers
-    */
-
-   /**
-    RxyI2C | RxyFEAT registers   
-    */
-    /**
-    PPS registers
-    */
-
-   /**
-    IOCx registers 
-    */
-    IOCB = 0x0;
-
-
-    // Enable INTCONbits.RBIE interrupt 
-    INTCONbits.RBIE = 1; 
-}
-  
-void PIN_MANAGER_IOC(void)
-{
-}
+#endif	/* SYSTEM_H */
 /**
  End of File
 */

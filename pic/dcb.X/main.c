@@ -83,29 +83,31 @@ int main(void){
 
 		printf("%02X\n", sec);
 
-		if(rtc_read(&tm)){
-			// 正常読み取り
-			sprintf(msgl1, "%04u/%02u/%02u ", tm.Year + 2000, tm.Month, tm.Day);
-			sprintf(msgl2, "  %02u:%02u:%02u ", tm.Hour, tm.Minute, tm.Second);
-			lcd_cmd(0x80);
-			lcd_print(msgl1);
-			lcd_cmd(0xC0);
-			lcd_print(msgl2);
-		}
-
-		// for(uint8_t addr=0; addr<128; addr++)
-		// {
-		// 	if(i2c_scan(addr)){
-		// 		printf("found: 0x%02X\n", addr);
-		// 	}
-		// }
-		// static uint8_t count = 0;
-		// sprintf(msgl2, "%1u SCL=%d SDA=%d", count++,
-		// 		PORTCbits.RC3,
-		// 		PORTCbits.RC4);
-		// lcd_cmd(0xC0);
-		// lcd_print(msgl2);
-		__delay_ms(1000);
+		///*
+//		if(rtc_read(&tm)){
+//			// 正常読み取り
+//			sprintf(msgl1, "%04u/%02u/%02u ", tm.Year + 2000, tm.Month, tm.Day);
+//			sprintf(msgl2, "  %02u:%02u:%02u ", tm.Hour, tm.Minute, tm.Second);
+//			lcd_cmd(0x80);
+//			lcd_print(msgl1);
+//			lcd_cmd(0xC0);
+//			lcd_print(msgl2);
+//		}
+		/*/
+		 for(uint8_t addr=0; addr<128; addr++)
+		 {
+		 	if(i2c_scan(addr)){
+		 		printf("found: 0x%02X\n", addr);
+		 	}
+		 }
+		 static uint8_t count = 0;
+		 sprintf(msgl2, "%1u SCL=%d SDA=%d", count++,
+		 		PORTCbits.RC3,
+		 		PORTCbits.RC4);
+		 lcd_cmd(0xC0);
+		 lcd_print(msgl2);
+		 //*/
+		//__delay_ms(1000);
 	}
 	I2C1_Deinitialize();
 }

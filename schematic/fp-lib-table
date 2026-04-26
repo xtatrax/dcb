@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Library") (type "KiCad") (uri "${KIPRJMOD}/Library.pretty") (options "") (descr ""))
+	(lib (name "pi-ex-lib") (type "KiCad") (uri "D:/00_dev/proj/000_TProje/00_learn/DI_information_board/document/committer/schematic/pi-ex-lib.pretty") (options "") (descr ""))
+)

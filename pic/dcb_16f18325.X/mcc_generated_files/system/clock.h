@@ -1,14 +1,16 @@
 /**
- * Generated Driver File
+ * CLOCK Generated Driver Header File 
  * 
- * @file pins.c
+ * @file clock.h
  * 
- * @ingroup  pinsdriver
+ * @defgroup clockdriver Clock Driver
  * 
- * @brief This is generated driver implementation for pins. 
- *        This file provides implementations for pin APIs for all pins selected in the GUI.
+ * @brief This file contains the API prototypes and other data types for the Clock driver.
  *
- * @version Driver Version 3.1.1
+ * @version Driver Version 2.0.4
+ *
+ * @version Package Version 4.3.7
+ *
 */
 
 /*
@@ -32,70 +34,28 @@
     THIS SOFTWARE.
 */
 
-#include "../pins.h"
+#ifndef CLOCK_H
+#define	CLOCK_H
 
+#ifndef _XTAL_FREQ
+/**
+    @ingroup clock control 
+    @def system frequency
+    @misradeviation{@required, 21.1} Defining the system frequency using the _XTAL_FREQ macro is required by the XC8 compiler for the built-in delay functions.
+*/
+/* cppcheck-suppress misra-c2012-21.1 */
+#define _XTAL_FREQ 32000000U
+#endif
 
-void PIN_MANAGER_Initialize(void)
-{
-   /**
-    LATx registers
-    */
-    LATA = 0x0;
-    LATB = 0x0;
-    LATC = 0x18;
-    LATD = 0x0;
-    LATE = 0x0;
-    /**
-    ODx registers
-    */
+/**
+ * @ingroup clockdriver
+ * @brief Initializes all the Internal Oscillator sources and the clock switch configurations. 
+ * @param None.
+ * @return None.
+ */
+void CLOCK_Initialize(void);
 
-    /**
-    TRISx registers
-    */
-    TRISA = 0xEF;
-    TRISB = 0xC0;
-    TRISC = 0xFF;
-    TRISD = 0xFB;
-    TRISE = 0x7;
-
-    /**
-    ANSELx registers
-    */
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x0;
-
-
-    /**
-    SLRCONx registers
-    */
-
-    /**
-    INLVLx registers
-    */
-
-   /**
-    RxyI2C | RxyFEAT registers   
-    */
-    /**
-    PPS registers
-    */
-
-   /**
-    IOCx registers 
-    */
-    IOCB = 0x0;
-
-
-    // Enable INTCONbits.RBIE interrupt 
-    INTCONbits.RBIE = 1; 
-}
-  
-void PIN_MANAGER_IOC(void)
-{
-}
+#endif	/* CLOCK_H */
 /**
  End of File
 */
